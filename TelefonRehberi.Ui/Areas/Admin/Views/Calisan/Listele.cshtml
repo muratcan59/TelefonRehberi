@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TelefonRehberi.Model.Calisan>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Çalışan</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Çalışan</a></li>
+                        <li class="breadcrumb-item active">Çalışan Listele</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Çalışan Listesi</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Ad - Soyad
+                                    </th>
+                                    <th>
+                                        Telefon
+                                    </th>
+                                    <th>
+                                        Departman Adı
+                                    </th>
+                                    <th>
+                                        Yönetici Adı
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AdSoyad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tel)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Departmanlar.Ad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Yoneticiler.AdSoyad)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(" ", "/Duzenle", new { id = item.Id }, new { @class = "btn btn-success far fa-edit" })
+                                        <button type="button" id="@item.Id" class="btn btn-danger far fa-trash-alt" onclick="SilinecekDatayiAta(@item.Id)" data-toggle="modal" data-target="#exampleModal"></button>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Emin Misiniz?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seçili Departmanı Silmek İstediğinizden Emin Misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" onclick="CalisanSil()">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var silinecekData = 0;
+    function CalisanSil() {
+        window.location = "/Admin/Calisan/Sil/" + silinecekData;
+    }
+    function SilinecekDatayiAta(id) {
+        silinecekData = id;
+    }
+</script>

@@ -1,0 +1,5 @@
+C:\Users\murat\source\repos\TelefonRehberi\TelefonRehberi.Model\bin\Debug\TelefonRehberi.Model.dll
+C:\Users\murat\source\repos\TelefonRehberi\TelefonRehberi.Model\bin\Debug\TelefonRehberi.Model.pdb
+C:\Users\murat\source\repos\TelefonRehberi\TelefonRehberi.Model\obj\Debug\TelefonRehberi.Model.dll
+C:\Users\murat\source\repos\TelefonRehberi\TelefonRehberi.Model\obj\Debug\TelefonRehberi.Model.pdb
+C:\Users\murat\source\repos\TelefonRehberi\TelefonRehberi.Model\obj\Debug\TelefonRehberi.Model.csprojAssemblyReference.cache

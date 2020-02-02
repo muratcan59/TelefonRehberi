@@ -1,0 +1,93 @@
+﻿@using TelefonRehberi.Model
+@model Calisan
+
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Çalışan</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Çalışan</a></li>
+                        <li class="breadcrumb-item active">Çalışan Düzenle</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Çalışan Düzenle</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Düzenle</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Ad - Soyad</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AdSoyad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Telefon</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Departman Adı</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(x => x.DepartmanId, new SelectList(ViewBag.Departmanlar as List<Departman>, "Id", "Ad"), "Seçiniz", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DepartmanId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Yönetici Adı</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(x => x.YoneticiId, new SelectList(ViewBag.Yoneticiler as List<Yonetici>, "Id", "Calisanlar.AdSoyad"), "Seçiniz", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.YoneticiId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Kaydet" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        <div style="margin-left:1%">
+                            @Html.ActionLink("Listeye Git", "/Listele")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
